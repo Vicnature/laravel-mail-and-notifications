@@ -1,6 +1,7 @@
 <?php
-
+use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    Mail::send(new OrderShipped());
     return view('welcome');
 });
+
+Route::get('/send-mail',[EmailController::class,'sendWelcomeEmail']);
